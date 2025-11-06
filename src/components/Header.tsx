@@ -1,12 +1,20 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PenSquare } from 'lucide-react';
 import NewPostModal from './NewPostModal';
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+
+  const handlePostCreated = () => {
+    setIsModalOpen(false);
+    // Refresh the current route to show the new post
+    router.refresh();
+  };
 
   return (
     <>
@@ -31,10 +39,7 @@ export default function Header() {
       <NewPostModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onPostCreated={() => {
-          // Refresh the page to show new post
-          window.location.reload();
-        }}
+        onPostCreated={handlePostCreated}
       />
     </>
   );

@@ -4,7 +4,7 @@ import { TrendingUp } from 'lucide-react';
 
 export default function MostViewed() {
   const mostViewedPosts = [
-    { id: 1, title: 'Getting Started with Next.js 14', views: '12.5K' },
+    { id: 1, title: 'Getting Started with Next.js 16', views: '12.5K' },
     { id: 2, title: 'Building Modern UIs with Tailwind', views: '10.2K' },
     { id: 3, title: 'React Server Components Explained', views: '8.7K' },
     { id: 4, title: 'TypeScript Best Practices', views: '7.3K' },

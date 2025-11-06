@@ -118,14 +118,16 @@ export async function getArticleById(id: number): Promise<ArticleDetail | null> 
 export async function createArticle(data: FormData): Promise<Article | null> {
   try {
     const title = data.get('title') as string;
-    const image = data.get('image') as File;
+    // Image would be uploaded to storage service in production
+    // const image = data.get('image') as File;
     
-    // For now, we'll create a simple object with hardcoded data
-    // In production, you'd upload the image and get a URL
+    // Create article object
+    // Note: In production, you would upload the image to a storage service
+    // and get back a permanent URL. For now, we use a placeholder.
     const article = {
       title,
       userId: 1, // Hardcoded as per requirements
-      imageUrl: image ? URL.createObjectURL(image) : '/placeholder.jpg'
+      imageUrl: '/placeholder.jpg' // Placeholder - would be replaced with actual upload URL
     };
     
     const response = await fetch(`${API_BASE_URL}/posts`, {
