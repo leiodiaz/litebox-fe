@@ -1,5 +1,8 @@
 import { Post, PaginatedResponse } from '@/types';
 
+// Simulate API delay
+const API_DELAY_MS = 100;
+
 // In-memory storage for posts (simulating a database)
 let posts: Post[] = [];
 let nextId = 1;
@@ -33,7 +36,7 @@ initializeSamplePosts();
 export const api = {
   async getPosts(page: number = 1, pageSize: number = 9): Promise<PaginatedResponse<Post>> {
     // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, API_DELAY_MS));
 
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
@@ -49,12 +52,12 @@ export const api = {
   },
 
   async getPost(id: string): Promise<Post | null> {
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, API_DELAY_MS));
     return posts.find(post => post.id === id) || null;
   },
 
   async createPost(data: { title: string; imageUrl: string }): Promise<Post> {
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, API_DELAY_MS));
 
     const newPost: Post = {
       id: String(nextId++),
@@ -74,7 +77,7 @@ export const api = {
   },
 
   async getLatestPosts(limit: number = 3): Promise<Post[]> {
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, API_DELAY_MS));
     return posts.slice(0, limit);
   },
 };
