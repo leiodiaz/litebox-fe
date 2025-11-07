@@ -1,15 +1,16 @@
-# LiteBox - Blog Platform
+# LiteBox - Modern Blog Platform
 
-A modern blog platform built with Next.js, TypeScript, and Tailwind CSS.
+A modern blog platform built with Next.js 16, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- 📝 **Article Listing**: Paginated display of blog posts (9 per page)
-- ➕ **Create Posts**: Modal interface to create new blog posts
-- 📖 **Article Details**: Full article view with markdown rendering
-- 🔗 **Related Posts**: Shows 3 latest posts on detail pages
-- 📱 **Responsive Design**: Mobile-friendly interface
-- ✨ **Smooth Transitions**: Hover effects and animations
+- 📝 **Article Listing**: Home page with 9 article cards per page
+- 🔄 **Pagination**: "Load More" button to load additional articles
+- ➕ **Create Posts**: Modal to create new posts with image upload and title
+- 📄 **Article Detail**: Dedicated page for each article with Markdown content
+- 🔗 **Related Posts**: Dynamic related posts section (3 most recent articles)
+- 📱 **Responsive Design**: Fully responsive desktop and mobile layouts
+- 🎨 **Static Components**: Filters, Newsletter subscription, and Most Viewed sections
 
 ## Tech Stack
 
@@ -17,33 +18,43 @@ A modern blog platform built with Next.js, TypeScript, and Tailwind CSS.
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
 - **Markdown**: react-markdown with remark-gfm
+- **Icons**: lucide-react
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- Node.js 18+ and npm
 
 ### Installation
 
-1. Clone the repository
+1. Clone the repository:
 ```bash
 git clone https://github.com/leiodiaz/litebox-fe.git
 cd litebox-fe
 ```
 
-2. Install dependencies
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Run the development server
+3. Configure environment variables:
+```bash
+cp .env.example .env.local
+```
+
+Edit `.env.local` and set your API URL:
+```
+NEXT_PUBLIC_API_URL=http://localhost:3001/api
+```
+
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ### Build for Production
 
@@ -55,44 +66,83 @@ npm start
 ## Project Structure
 
 ```
-src/
-├── app/
-│   ├── globals.css          # Global styles
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Home page with pagination
-│   └── post/[id]/page.tsx   # Article detail page
-├── components/
-│   ├── ArticleCard.tsx      # Article card component
-│   ├── Header.tsx           # Header with New Post button
-│   └── NewPostModal.tsx     # Modal for creating posts
-├── lib/
-│   ├── api.ts               # API service layer
-│   └── content.ts           # Static markdown content
-└── types/
-    └── index.ts             # TypeScript type definitions
+litebox-fe/
+├── src/
+│   ├── app/              # Next.js app router pages
+│   │   ├── article/[id]/ # Article detail page
+│   │   ├── layout.tsx    # Root layout with header
+│   │   ├── page.tsx      # Home page
+│   │   └── globals.css   # Global styles
+│   ├── components/       # React components
+│   │   ├── ArticleCard.tsx
+│   │   ├── Header.tsx
+│   │   ├── NewPostModal.tsx
+│   │   ├── RelatedPosts.tsx
+│   │   ├── Filters.tsx
+│   │   ├── Newsletter.tsx
+│   │   └── MostViewed.tsx
+│   ├── lib/              # Utility functions
+│   │   └── api.ts        # API service
+│   └── types/            # TypeScript types
+│       └── article.ts
+├── public/               # Static assets
+└── package.json
 ```
 
-## Usage
+## API Integration
 
-### Creating a New Post
+The application expects a REST API with the following endpoints:
 
-1. Click the "New Post" button in the header
-2. Enter a title and image URL
-3. Click "Create Post"
-4. The new post will appear at the top of the list
+- `GET /api/posts?_page={page}&_limit={limit}` - List articles with pagination
+- `GET /api/posts/{id}` - Get article by ID
+- `POST /api/posts` - Create new article
+- `GET /api/posts?_sort=createdAt&_order=desc&_limit={limit}` - Get recent articles
 
-### Viewing Article Details
+### Article Schema
 
-Click on any article card to view the full article with:
-- Complete markdown content
-- Author information
-- Related posts
-- Social sharing options
+```typescript
+{
+  id: number;
+  title: string;
+  imageUrl: string;
+  userId: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+```
 
-### Loading More Posts
+## Development
 
-Click the "Load More" button at the bottom of the home page to load the next 9 posts.
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## Features Detail
+
+### Home Page
+- Displays 9 article cards in a responsive grid
+- "Load More" button to fetch additional articles
+- Sidebar with filters, newsletter, and most viewed sections
+
+### New Post Modal
+- Upload image for the post
+- Enter post title
+- Additional data (userId, etc.) is hardcoded as per requirements
+
+### Article Detail Page
+- Full article with header image
+- Markdown content rendering
+- Related posts section (3 most recent articles)
+- Most viewed sidebar
+
+### Static Components
+- **Filters**: Category filters (visual only)
+- **Newsletter**: Email subscription form (visual only)
+- **Most Viewed**: List of popular articles (visual only)
 
 ## License
 
-ISC
+This project is private and not licensed for public use.
