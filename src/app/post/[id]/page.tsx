@@ -11,6 +11,18 @@ import ArticleCard from '@/components/ArticleCard';
 import { api } from '@/lib/api';
 import { ARTICLE_CONTENT } from '@/lib/content';
 import { Post } from '@/types';
+import { Article } from '@/types/article';
+
+// Helper function to convert Post to Article
+function postToArticle(post: Post): Article {
+  return {
+    id: parseInt(post.id, 10),
+    title: post.title,
+    imageUrl: post.imageUrl,
+    userId: 1,
+    createdAt: post.createdAt
+  };
+}
 
 export default function PostDetail() {
   const params = useParams();
@@ -169,7 +181,7 @@ export default function PostDetail() {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Posts</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedPosts.slice(0, 3).map(relatedPost => (
-                  <ArticleCard key={relatedPost.id} post={relatedPost} />
+                  <ArticleCard key={relatedPost.id} article={postToArticle(relatedPost)} />
                 ))}
               </div>
             </div>
