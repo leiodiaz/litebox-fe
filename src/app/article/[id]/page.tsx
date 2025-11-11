@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import { getArticleById } from '@/lib/api';
 import RelatedPosts from '@/components/RelatedPosts';
 import MostViewed from '@/components/MostViewed';
+import TopicChip from '@/components/TopicChip';
 
 // Sample markdown content for articles
 const SAMPLE_MARKDOWN_CONTENT = `
@@ -58,12 +59,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
-            <article className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <article className="bg-white rounded-[5px] shadow-sm overflow-hidden">
               {/* Article Header Image */}
               <div className="relative aspect-[21/9] bg-gray-100">
                 <Image
@@ -78,12 +79,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
               {/* Article Content */}
               <div className="p-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                <div className="mb-4">
+                  <TopicChip>Technology</TopicChip>
+                </div>
+                
+                <h1 className="text-[35px] font-bold text-black mb-4 font-['Space_Grotesk']">
                   {article.title}
                 </h1>
 
                 {article.createdAt && (
-                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-8 pb-8 border-b border-gray-200">
+                  <div className="flex items-center gap-4 text-sm text-gray mb-8 pb-8 border-b border-border">
                     <time dateTime={article.createdAt}>
                       {new Date(article.createdAt).toLocaleDateString('en-US', {
                         year: 'numeric',

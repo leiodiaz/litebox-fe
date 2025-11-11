@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import { Article } from '@/types/article';
 import { getArticles } from '@/lib/api';
 import HeroSection from '@/components/HeroSection';
-import ArticleCard from '@/components/ArticleCard';
+import CardPost from '@/components/CardPost';
 import Filters from '@/components/Filters';
 import Newsletter from '@/components/Newsletter';
 import MostViewed from '@/components/MostViewed';
+import Button from '@/components/Button';
 
 export default function Home() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -38,12 +39,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
         {articles.length > 0 && !loading && (
-          <div className="mb-8">
-            <h2 className="text-sm font-semibold text-text-secondary uppercase mb-4">Today story</h2>
+          <div className="mb-12">
+            <h2 className="text-sm font-semibold text-gray uppercase mb-4">Today story</h2>
             <HeroSection article={articles[0]} />
           </div>
         )}
@@ -56,7 +57,12 @@ export default function Home() {
           <div className="lg:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {articles.slice(1).map((article) => (
-                <ArticleCard key={article.id} article={article} />
+                <CardPost 
+                  key={article.id}
+                  id={article.id}
+                  title={article.title}
+                  imageUrl={article.imageUrl}
+                />
               ))}
             </div>
 
@@ -68,19 +74,19 @@ export default function Home() {
 
             {!loading && hasMore && articles.length > 0 && (
               <div className="flex justify-center mt-12">
-                <button
+                <Button
                   onClick={handleLoadMore}
                   disabled={loading}
-                  className="px-8 py-3 bg-primary text-black rounded-lg hover:opacity-90 transition-opacity font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                  variant="primary-green"
                 >
                   {loading ? 'Loading...' : 'Load More'}
-                </button>
+                </Button>
               </div>
             )}
 
             {!loading && articles.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-text-secondary">No articles found. Create your first post!</p>
+                <p className="text-gray">No articles found. Create your first post!</p>
               </div>
             )}
           </div>

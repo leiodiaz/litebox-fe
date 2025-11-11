@@ -1,5 +1,5 @@
 import { getRecentArticles } from '@/lib/api';
-import ArticleCard from './ArticleCard';
+import CardPost from './CardPost';
 
 interface RelatedPostsProps {
   excludeId: number;
@@ -13,13 +13,19 @@ export default async function RelatedPosts({ excludeId }: RelatedPostsProps) {
   }
 
   return (
-    <div className="mt-12">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Posts</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section className="py-16">
+      <h2 className="text-[35px] font-bold text-black mb-8 font-['Space_Grotesk']">Related posts</h2>
+      <div className="flex flex-col md:flex-row gap-8">
         {relatedPosts.map((post) => (
-          <ArticleCard key={post.id} article={post} />
+          <div key={post.id} className="flex-1">
+            <CardPost 
+              id={post.id}
+              title={post.title}
+              imageUrl={post.imageUrl}
+            />
+          </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
