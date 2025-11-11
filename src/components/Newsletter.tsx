@@ -1,26 +1,23 @@
 'use client';
 
-import { Mail } from 'lucide-react';
-
 export default function Newsletter() {
   return (
-    <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg shadow-sm p-6 text-white">
-      <div className="flex items-center gap-2 mb-3">
-        <Mail className="w-5 h-5" />
-        <h3 className="text-lg font-semibold">Newsletter</h3>
-      </div>
-      <p className="text-blue-100 mb-4 text-sm">
-        Subscribe to get the latest articles delivered to your inbox.
+    <div className="w-full bg-secondary rounded-lg p-8 md:p-12 text-center my-16">
+      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+        Sign up for our newsletter
+      </h2>
+      <p className="text-white mb-8 max-w-2xl mx-auto">
+        Get the latest articles and insights delivered directly to your inbox
       </p>
-      <form className="space-y-3">
+      <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
         <input
           type="email"
           placeholder="Enter your email"
-          className="w-full px-4 py-2 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-300 outline-none"
+          className="flex-1 px-4 py-3 rounded-lg text-gray-900 border border-white focus:ring-2 focus:ring-primary outline-none"
         />
         <button
           type="submit"
-          className="w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors"
+          className="px-8 py-3 bg-primary text-black rounded-lg font-semibold hover:opacity-90 transition-opacity"
         >
           Subscribe
         </button>

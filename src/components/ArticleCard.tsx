@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowRight, Clock } from 'lucide-react';
 import { Article } from '@/types/article';
 
 interface ArticleCardProps {
@@ -12,7 +13,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <Link 
       href={`/article/${article.id}`}
-      className="group block overflow-hidden rounded-lg bg-white shadow-sm hover:shadow-lg transition-all duration-300"
+      className="group block overflow-hidden rounded-lg bg-card hover:shadow-lg transition-all duration-300"
     >
       <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
         <Image
@@ -24,18 +25,22 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         />
       </div>
       <div className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+        <div className="inline-block px-3 py-1 bg-primary text-black text-xs font-semibold rounded mb-3">
+          Technology
+        </div>
+        <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2 mb-3">
           {article.title}
         </h3>
-        {article.createdAt && (
-          <p className="mt-2 text-sm text-gray-500">
-            {new Date(article.createdAt).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </p>
-        )}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-gray-900 font-semibold text-sm group-hover:text-primary transition-colors">
+            <span>Read</span>
+            <ArrowRight className="w-4 h-4" />
+          </div>
+          <div className="flex items-center gap-1 text-text-secondary">
+            <Clock className="w-3 h-3" />
+            <span className="text-xs">6 mins</span>
+          </div>
+        </div>
       </div>
     </Link>
   );
