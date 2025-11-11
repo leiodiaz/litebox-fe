@@ -1,16 +1,23 @@
 'use client';
 
+import { useState } from 'react';
+
 export default function Filters() {
   const categories = ['All', 'Technology', 'Design', 'Business', 'Lifestyle', 'Travel'];
+  const [activeCategory, setActiveCategory] = useState('All');
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
-      <div className="space-y-2">
+    <div className="w-full overflow-x-auto py-4 mb-8">
+      <div className="flex gap-3 min-w-max">
         {categories.map((category) => (
           <button
             key={category}
-            className="w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-700"
+            onClick={() => setActiveCategory(category)}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${
+              activeCategory === category
+                ? 'bg-primary text-black'
+                : 'bg-transparent border border-white text-white hover:border-primary hover:text-primary'
+            }`}
           >
             {category}
           </button>

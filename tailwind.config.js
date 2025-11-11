@@ -6,7 +6,26 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#C8FF00',
+        secondary: '#A78BFA',
+        background: '#000000',
+        card: '#FFFFFF',
+        text: {
+          primary: '#FFFFFF',
+          secondary: '#999999'
+        },
+        border: '#E5E5E5',
+        success: '#BFFF00'
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif']
+      },
+      borderRadius: {
+        lg: '8px'
+      }
+    },
   },
   plugins: [],
 }
