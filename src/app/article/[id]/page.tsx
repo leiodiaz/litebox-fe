@@ -3,45 +3,9 @@ import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { getArticleById } from '@/lib/api';
+import { ARTICLE_CONTENT } from '@/lib/content';
 import RelatedPosts from '@/components/RelatedPosts';
 import MostViewed from '@/components/MostViewed';
-
-// Sample markdown content for articles
-const SAMPLE_MARKDOWN_CONTENT = `
-# Article Content
-
-This is a detailed article with rich content. The article demonstrates various markdown features including:
-
-## Key Features
-
-- **Bold text** for emphasis
-- *Italic text* for subtle emphasis
-- Lists and structured content
-- Code blocks and inline code
-
-## Main Content
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-### Subsection
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-\`\`\`javascript
-// Example code block
-function greet(name) {
-  console.log(\`Hello, \${name}!\`);
-}
-\`\`\`
-
-## Conclusion
-
-This is an example of how markdown content is rendered in the article detail page. The content supports rich formatting and various markdown features.
-
-> This is a blockquote highlighting important information.
-
-For more information, check out the [documentation](#).
-`;
 
 interface ArticlePageProps {
   params: Promise<{
@@ -97,7 +61,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 {/* Markdown Content */}
                 <div className="prose prose-lg max-w-none">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {SAMPLE_MARKDOWN_CONTENT}
+                    {ARTICLE_CONTENT}
                   </ReactMarkdown>
                 </div>
               </div>

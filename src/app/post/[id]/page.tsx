@@ -6,7 +6,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import Header from '@/components/Header';
 import ArticleCard from '@/components/ArticleCard';
 import { api } from '@/lib/api';
 import { ARTICLE_CONTENT } from '@/lib/content';
@@ -56,7 +55,6 @@ export default function PostDetail() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header />
         <main className="container mx-auto px-4 py-8">
           <div className="text-center py-12">
             <p className="text-gray-600">Loading...</p>
@@ -69,7 +67,6 @@ export default function PostDetail() {
   if (!post) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header />
         <main className="container mx-auto px-4 py-8">
           <div className="text-center py-12">
             <p className="text-gray-600">Post not found</p>
@@ -84,8 +81,6 @@ export default function PostDetail() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-      
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           {/* Back button */}
