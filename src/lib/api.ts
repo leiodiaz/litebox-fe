@@ -1,4 +1,5 @@
 import { Article, ArticleDetail } from '@/types/article';
+import { Post } from '@/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
@@ -174,3 +175,37 @@ export async function getRecentArticles(limit: number = 3, excludeId?: number): 
     return filtered.slice(0, limit);
   }
 }
+
+// Helper function to convert Article to Post type
+function articleToPost(article: Article | ArticleDetail): Post {
+  return {
+    id: article.id.toString(),
+    title: article.title,
+    imageUrl: article.imageUrl,
+    createdAt: article.createdAt || new Date().toISOString(),
+    content: 'content' in article ? article.content : undefined,
+    tags: [],
+    readTime: 5,
+    author: {
+      name: 'Admin',
+      avatar: undefined
+    }
+  };
+}
+
+// API object with methods matching the expected interface
+export const api = {
+  async getPost(id: string): Promise<Post | null> {
+    const numericId = parseInt(id, 10);
+    if (isNaN(numericId)) {
+      return null;
+    }
+    const article = await getArticleById(numericId);
+    return article ? articleToPost(article) : null;
+  },
+  
+  async getLatestPosts(limit: number): Promise<Post[]> {
+    const articles = await getRecentArticles(limit);
+    return articles.map(articleToPost);
+  }
+};
