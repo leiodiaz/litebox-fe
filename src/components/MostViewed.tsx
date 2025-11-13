@@ -12,20 +12,20 @@ export default function MostViewed() {
   ];
 
   return (
-    <div className="bg-gray-900 rounded-lg p-6">
+    <div className="bg-white border border-border rounded-[5px] p-6">
       <div className="flex items-center gap-2 mb-4">
         <TrendingUp className="w-5 h-5 text-primary" />
-        <h3 className="text-lg font-semibold text-white">Most Viewed</h3>
+        <h3 className="text-lg font-semibold text-black">Most Viewed</h3>
       </div>
       <div className="space-y-3">
         {mostViewedPosts.map((post, index) => (
-          <div key={post.id} className="flex items-start gap-3 pb-3 border-b border-gray-800 last:border-0">
-            <span className="text-2xl font-bold text-gray-700">{index + 1}</span>
+          <div key={post.id} className="flex items-start gap-3 pb-3 border-b border-border last:border-0">
+            <span className="text-2xl font-bold text-gray">{index + 1}</span>
             <div className="flex-1">
-              <h4 className="text-sm font-medium text-white hover:text-primary cursor-pointer line-clamp-2">
+              <h4 className="text-sm font-medium text-black hover:text-primary cursor-pointer line-clamp-2">
                 {post.title}
               </h4>
-              <p className="text-xs text-text-secondary mt-1">{post.views} views</p>
+              <p className="text-xs text-gray mt-1">{post.views} views</p>
             </div>
           </div>
         ))}

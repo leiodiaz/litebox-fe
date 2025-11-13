@@ -8,22 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#C8FF00',
-        secondary: '#A78BFA',
-        background: '#000000',
+        primary: '#9C73F7',
+        accent: '#D8F34E',
+        text: '#000000',
+        gray: '#595959',
+        bg: '#FFFFFF',
         card: '#FFFFFF',
-        text: {
-          primary: '#FFFFFF',
-          secondary: '#999999'
-        },
-        border: '#E5E5E5',
-        success: '#BFFF00'
+        violet: '#9747FF',
+        border: '#E5E5E5'
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif']
+        sans: ['Space Grotesk', 'Inter', 'sans-serif']
       },
       borderRadius: {
+        base: '5px',
         lg: '8px'
+      },
+      spacing: {
+        '128': '32rem',
+        '64': '16rem'
       }
     },
   },
